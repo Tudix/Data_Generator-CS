@@ -1,0 +1,6 @@
+Cell "cell - hidden"
+categorical [0..]
+{
+    _1 "Cell 1"
+};
+

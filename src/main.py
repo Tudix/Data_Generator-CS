@@ -1,38 +1,30 @@
-from docx import Document
-import re
 import os
-
-def read_word_document(file_path):
-  doc = Document(file_path)
-  text = []
-  for paragraph in doc.paragraphs:
-    text.append(paragraph.text)
-  return "\n".join(text)
-
-
-def save_output(output, output_path):
-  with open(output_path, 'w') as f:
-    f.write(output)
-
-def create_folder(folder_name):
-  if not os.path.exists(folder_name):
-    os.makedirs(folder_name)
-    print(f"Folder created: {folder_name}")
-  else:
-    print(f"Folder already exists: {folder_name}")
+from utils import read_word_document, create_folder
+from generate_output import generate_all_outputs
 
 
 if __name__ == "__main__":
 
-  input_file = "input/10981_project_information.docx"
-  output_folder = 'output'
+  input_file = "input/86044_project_information.docx"
+  output_folder = 'output'                                          # Container folder
   metadata_file = os.path.join(output_folder,'Metadata.txt')
   routing_file = os.path.join(output_folder,'Routing.txt')
 
+  # Create container folder
   create_folder(output_folder)
 
-  text = read_word_document(input_file)
-  save_output(text,metadata_file)
-  #save_output(text,routing_file)  #Create Routing.txt
 
-  print("Output saved!")
+  # Read word document
+  doc_text = read_word_document(input_file)
+
+  # Generate Metadata & Routing
+  outputs = generate_all_outputs(doc_text)
+
+  # Save to respective files
+  with open(metadata_file, 'w') as f:
+    f.write(outputs['metadata'])
+
+  with open(routing_file, 'w') as f:
+    f.write(outputs['routing'])
+
+  print("Outputs saved!")
