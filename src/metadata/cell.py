@@ -17,7 +17,7 @@ def generate_cells_output(nr_tested_media):
       cells_output += f'    _{i} "Cell {i}",\n'
     else:
       cells_output += f'    _{i} "Cell {i}"\n'
-  cells_output += '};\n\n'
+  cells_output += '};'
   return cells_output
 
 def get_cell(doc_text):

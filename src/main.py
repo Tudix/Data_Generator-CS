@@ -27,4 +27,4 @@ if __name__ == "__main__":
   with open(routing_file, 'w') as f:
     f.write(outputs['routing'])
 
-  print("Outputs saved!")
+  print("Metadata.txt and routing.txt generated!")
