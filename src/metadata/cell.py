@@ -2,7 +2,6 @@ import re
 
 def extract_nr_of_tested_media(doc_text):
   # Regular expression to find "Nr of tested media" and extract the value
-  #nr_tested_media_match = re.search(r'Nr of tested media:\s*(/d+)', doc_text)
   nr_tested_media_match = re.search(r'Nr\s*of\s*tested\s*media:\s*(\d+)', doc_text, re.IGNORECASE)
   if nr_tested_media_match:
     nr_tested_media = int(nr_tested_media_match.group(1))
