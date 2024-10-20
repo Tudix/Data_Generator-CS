@@ -7,6 +7,8 @@ from .language_info_routing import generate_routing_language_section
 from metadata.language_info_metadata import get_language_sections
 from .media_info_routing import get_media_info, generate_routing_for_media
 
+from .qoe import get_qoe
+
 
 def extract_routing(doc_text):
   # Extracts routing-related information from the doc_text.
@@ -19,6 +21,8 @@ def extract_routing(doc_text):
   verb_used = get_verb_used(doc_text)
   languages = get_language_sections(doc_text)
   media_info = get_media_info(doc_text)
+
+  qoe_responses = get_qoe(doc_text)
 
 
   routing_output = (
@@ -48,6 +52,9 @@ def extract_routing(doc_text):
 
   routing_output += generate_routing_for_media(media_info)
 
+  
 
+  # QOE
+  routing_output += f'QOE.Response = {{{",".join(qoe_responses)}}}\n'
 
   return routing_output
