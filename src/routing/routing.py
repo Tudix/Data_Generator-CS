@@ -5,6 +5,7 @@ from .brand_product import get_project_type, get_hidlevels, get_brandproduct
 from .verb_used import get_verb_used
 from .language_info_routing import generate_routing_language_section
 from metadata.language_info_metadata import get_language_sections
+from .media_info_routing import get_media_info, generate_routing_for_media
 
 
 def extract_routing(doc_text):
@@ -17,6 +18,7 @@ def extract_routing(doc_text):
   brandproduct = get_brandproduct(project_type)
   verb_used = get_verb_used(doc_text)
   languages = get_language_sections(doc_text)
+  media_info = get_media_info(doc_text)
 
 
   routing_output = (
@@ -43,5 +45,9 @@ def extract_routing(doc_text):
 
   # isEntertainment | TobAlcoBevCateg
   routing_output +=  generate_routing_language_section(languages)
+
+  routing_output += generate_routing_for_media(media_info)
+
+
 
   return routing_output

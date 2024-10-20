@@ -6,7 +6,7 @@ def generate_routing_language_section(languages):
     tob_alco_value = "_1" if language["is_tobacco_or_alcohol"] == "yes" else "_2"
 
     if len(languages) > 1:
-      routing_output += f'--- {language["language_label"]} - {language["language_name"]} ---\n\n'
+      routing_output += f'--- {language["language_label"]} - {language["language_name"]} --- START\n\n'
 
     routing_output += (
       f'isEntertainment.Response = {{{is_entertainment_value}}}\n\n'
