@@ -14,7 +14,7 @@ def generate_metadata_for_media(media_info, job_book_number):
 
     if len(media_info) > 1:
       # Header for each language section
-      metadata_output += f'--- {media["language_label"]} - {media["language_name"]} --- START\n\n'
+      metadata_output += f'--- Language{media["language_label"]} - {media["language_name"]} --- START\n\n'
 
     # File and dashboard name for the tested ads
     metadata_output += (
@@ -31,6 +31,6 @@ def generate_metadata_for_media(media_info, job_book_number):
 
     if len(media_info) > 1:
       # Footer for each language section
-      metadata_output += f'--- {media["language_label"]} - {media["language_name"]} --- END\n\n'
+      metadata_output += f'--- Language{media["language_label"]} - {media["language_name"]} --- END\n\n'
 
   return metadata_output

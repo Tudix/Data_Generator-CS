@@ -18,13 +18,3 @@ def generate_cells_output(nr_tested_media):
       cells_output += f'    _{i} "Cell {i}"\n'
   cells_output += '};'
   return cells_output
-
-def get_cell(doc_text):
-  nr_tested_media = extract_nr_of_tested_media(doc_text)
-  cells_output = generate_cells_output(nr_tested_media)
-  return cells_output
-
-
-## Process the document and print the output
-#output = get_cell(doc_text)
-#print(output)
