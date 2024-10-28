@@ -23,7 +23,7 @@ def get_brandproduct(project_type):
   # Generate the BrandProduct.Response based on the hidlevel
   if project_type == "Brand":
     return 1      # BrandProduct.response = {_1} if Brand
-  elif project_type == "Product":
+  elif project_type == "Product" or project_type == "Brand and Product":
     return 2      # BrandProduct.response = {_2} if Product
   else:
     raise ValueError("Invalid project type for BrandProduct")

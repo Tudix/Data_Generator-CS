@@ -11,15 +11,15 @@ def get_filler_media_info(doc_text):
   """
 
   fillerlist = []
-  filler_brandproduct_list = []
+  filler_brandproduct_list_raw = []
 
   # Regular expression to capture filler media information per language
   filler_media_regex = re.compile(
     r'\s*Language(\d+):\s*(\w+)\s*\n'
     r'\s*Filler position 1:\s*(.*?)\s*\n'
     r'\s*Filler position 3:\s*(.*?)\s*\n'
-    r'\s*Filler position 4:\s*(.*?)\s*\n\n'
-    r'\s*Filler Brand/Product lists:\s*(.*?)(?=\n\n)',
+    r'\s*Filler position 4:\s*(.*?)\s*\n+'
+    r'\s*Filler Brand/Product lists:\s*(.*?)\n\n',
     re.DOTALL
   )
 
@@ -38,9 +38,9 @@ def get_filler_media_info(doc_text):
       "brandproduct": match.group(6)
     }
 
-    filler_brandproduct_list.append(filler_brandproduct_item)
+    filler_brandproduct_list_raw.append(filler_brandproduct_item)
 
-  return fillerlist, filler_brandproduct_list
+  return fillerlist, filler_brandproduct_list_raw
 
 
 def generate_fillerslist(fillerlist, job_book_number, nr_tested_media):

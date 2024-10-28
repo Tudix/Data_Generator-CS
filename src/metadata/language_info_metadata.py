@@ -1,13 +1,21 @@
 import re
 
 def get_language_sections(doc_text):
-  languages = []
+  category_settings = []
 
   # Regular expression to capture first section of languages
-  language_regex = re.compile(r'(Language\d+):\s*(\w+).*?\n\s*Category\s*tested\s*ad:\s*(.*?)\n\s*Category\s*tested\s*ad\s*article:\s*(.*?)\n\s*Is_Entertainment:\s*(.*?)\n\s*is_tobacco_or_alcohol:\s*(.*?)\n\s*Category\s*filler\s*ad:\s*(.*?)\n\s*Category\s*filler\s*ad\s*article:\s*(.*?)\n', re.DOTALL)
+  category_settings = re.compile(
+    r'(Language\d+):\s*(\w+).*?\n'
+    r'\s*Category\s*tested\s*ad:\s*(.*?)\n'
+    r'\s*Category\s*tested\s*ad\s*article:\s*(.*?)\n'
+    r'\s*Is_Entertainment:\s*(.*?)\n'
+    r'\s*is_tobacco_or_alcohol:\s*(.*?)\n'
+    r'\s*Category\s*filler\s*ad:\s*(.*?)\n'
+    r'\s*Category\s*filler\s*ad\s*article:\s*(.*?)\n', 
+    re.DOTALL)
 
-  for match in language_regex.finditer(doc_text):
-    language_info = {
+  for match in category_settings.finditer(doc_text):
+    category_settings_info = {
       "language_label": match.group(1),
       "language_name": match.group(2),
       "category_tested_ad": match.group(3),
@@ -17,16 +25,16 @@ def get_language_sections(doc_text):
       "category_filler_ad": match.group(7),
       "category_filler_ad_article": match.group(8),
     }
-    languages.append(language_info)
+    category_settings.append(category_settings_info)
 
-  return languages
+  return category_settings
 
-def generate_metadata_language_section(languages):
+def generate_metadata_language_section(category_settings):
   metadata_output = ""
 
-  for language in languages:
+  for language in category_settings:
 
-    if len(languages) > 1:
+    if len(category_settings) > 1:
       metadata_output += f'--- {language["language_label"]} - {language["language_name"]} --- START\n\n' 
 
     metadata_output += (
@@ -52,7 +60,7 @@ def generate_metadata_language_section(languages):
       f'}};\n\n'
     )
 
-    if len(languages) > 1:
+    if len(category_settings) > 1:
       metadata_output += f'--- {language["language_label"]} - {language["language_name"]} --- END\n\n' 
 
   return metadata_output

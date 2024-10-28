@@ -57,4 +57,4 @@ def extract_routing(doc_text):
   # QOE
   routing_output += f'QOE.Response = {{{",".join(qoe_responses)}}}\n'
 
-  return routing_output
+  return routing_output, hidlevels, brandproduct

@@ -1,6 +1,6 @@
 import os
 from utils import read_word_document, create_folder
-from generate_output import generate_all_outputs
+from generate_output import generate_all_outputs, get_languages
 
 if __name__ == "__main__":
 
@@ -16,6 +16,9 @@ if __name__ == "__main__":
 
   # Read word document
   doc_text = read_word_document(input_file)
+
+  # Extract the languages
+  languages = get_languages(doc_text)
 
   # Generate Metadata & Routing
   outputs = generate_all_outputs(doc_text, job_book_number)
