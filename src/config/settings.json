@@ -1,0 +1,32 @@
+{
+  "qoe_keywords": {
+    "(reactions)": "_1",
+    "(tell a friend)": "_2",
+    "(main idea)": "_3"
+  },
+  "exposure_types": {
+    "standard": "_1",
+    "TV": "_1",
+    "FC": "_1",
+    "digital": "_2"
+  },
+  "verb_used": {
+    "choose": 1,
+    "use": 2,
+    "visit ": 3,
+    "visit": 4,
+    "try": 5,
+    "contact": 6,
+    "seek research on": 7,
+    "recommend": 8,
+    "get a quote for": 9,
+    "download": 10,
+    "ask a doctor about": 11,
+    "visit a website on": 12,
+    "watch": 13,
+    "buy": 14,
+    "consider": 15,
+    "play with": 16,
+    "ask for": 17
+  }
+}
