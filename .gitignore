@@ -5,5 +5,4 @@ __pycache__/
 *.pyo
 *.pyd
 *.docx
-Metadata.txt
-Routing.txt
+*.txt
