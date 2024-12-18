@@ -4,7 +4,7 @@ from .cell import extract_nr_of_tested_media, generate_cells_output
 from .category_settings import extract_category_settings, generate_category_outputs
 from .media_info import get_media_info, generate_metadata_for_media, generate_routing_for_media
 from .filler_media_info import get_filler_media_info, generate_fillerslist
-from . brand_product_lists import generate_brandproduct_lists
+from .brand_product_lists import generate_brandproduct_lists
 from .tested_brand_product import extract_tested_lists
 from .exposure_type import extract_exposure_type
 from .brandproduct import extract_project_type, extract_hidlevels, extract_brandproduct

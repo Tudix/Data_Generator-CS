@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document Processor</title>
+  <link rel="stylesheet" href="/static/style.css">
+</head>
+
+<body>
+  <h1>Document Processor</h1>
+  <form id="upload-form">
+    <label for="doc-file">Upload DOCX File:</label>
+    <input type="file" id="doc-file" name="doc_file" required>
+    <br><br>
+    <label for="job-book-number">Job Book Number:</label>
+    <input type="text" id="job-book-number" name="job_book_number" required>
+    <br><br>
+    <button type="submit">Generate Output</button>
+  </form>
+  <div id="response"></div>
+
+  <script>
+    document.getElementById('upload-form').addEventListener('submit', async (event) => {
+      event.preventDefault();
+
+      const formData = new FormData(event.target);
+
+      try {
+        const response = await fetch('/process', {
+          method: 'POST',
+          body: formData
+        });
+        const result = await response.json();
+
+        if (response.ok) {
+          document.getElementById('response').innerHTML = `
+                        <p>Success! Output folder: ${result.output_folder}</p>
+                    `;
+        } else {
+          document.getElementById('response').innerHTML = `
+                        <p>Error: ${result.error}</p>
+                    `;
+        }
+      } catch (error) {
+        document.getElementById('response').innerHTML = `
+                    <p>Error: ${error.message}</p>
+                `;
+      }
+    });
+  </script>
+</body>
+
+</html>

@@ -2,7 +2,7 @@ import os
 from core import *
 from modules import *
 
-def run_generator(document_path, job_book_number):
+def process_document(document_path, job_book_number, output_folder):
 
   doc_text = read_document(document_path)
   json_settings = load_settings()
@@ -51,7 +51,7 @@ def run_generator(document_path, job_book_number):
     data[lang]["metadata"] += f'{filler_media_info_m}'
 
     # Tested brand/product lists (M)
-    tested_brandproduct_lists = generate_brandproduct_lists(tested_brandproduct_list_raw, lang, 1, 1)
+    tested_brandproduct_lists = generate_brandproduct_lists(tested_brandproduct_list_raw, lang, hidlevels, brandproduct)
     data[lang]["metadata"] += f'{tested_brandproduct_lists}'
 
 
@@ -78,20 +78,19 @@ def run_generator(document_path, job_book_number):
     media_info_r =  generate_routing_for_media(media_info, lang)
     data[lang]["routing"] += f'{media_info_r}'
 
+    write_language_output(data[lang], lang, output_folder)
 
-    write_language_output(data[lang], lang)
+# if __name__ == "__main__":
 
-if __name__ == "__main__":
-
-  input_file = "input/86044_project_information.docx"
-  job_book_number = "10-123456-20"
-  output_folder = 'output'                                          # Container folder
-  os.makedirs(output_folder, exist_ok=True)
-  # metadata_file = os.path.join(output_folder,'Metadata.txt')
-  # routing_file = os.path.join(output_folder,'Routing.txt')
+#   input_file = "input/86044_project_information.docx"
+#   job_book_number = "10-123456-20"
+#   output_folder = 'output'                                          # Container folder
+#   os.makedirs(output_folder, exist_ok=True)
+#   # metadata_file = os.path.join(output_folder,'Metadata.txt')
+#   # routing_file = os.path.join(output_folder,'Routing.txt')
 
 
-  run_generator(input_file,job_book_number)
+#   process_document(input_file,job_book_number)
 
 
   # def create_folder(folder_name):
