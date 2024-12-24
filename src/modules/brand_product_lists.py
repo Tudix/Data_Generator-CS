@@ -77,7 +77,7 @@ def generate_brandproduct_lists(brandproduct_list_raw, language, hidlevels, bran
 
     brands.append(f'_{brand_counter} "{brand_name}"')
     brand_logos.append(f'_{brand_counter} "{logo_path}"')
-    brand_logo_names.append(f'_{brand_counter} "{logo_path}<br\\>{brand_name}"')
+    brand_logo_names.append(f'_{brand_counter} "{logo_path}<br/>{brand_name}"')
 
     product_list_raw = match.group(index_products_match)
 
@@ -124,7 +124,7 @@ def generate_brandproduct_lists(brandproduct_list_raw, language, hidlevels, bran
         logo_path = f"<img src='{{#mediaPath}}{{#subFolder1}}/{{#CultureInfo_media}}/{logo_file}' />"
         brand_logos.append(f'_{brand_counter} "{logo_path}"')
         if brand_name:
-          brand_logo_names.append(f'_{brand_counter} "{logo_path}<br\\>{brand_name}"')
+          brand_logo_names.append(f'_{brand_counter} "{logo_path}<br/>{brand_name}"')
 
   # Product
   if hidlevels == 1 and brandproduct == 2:
