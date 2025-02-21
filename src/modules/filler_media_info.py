@@ -68,17 +68,18 @@ def generate_fillerslist(fillerlist, language, job_book_number, nr_tested_media)
 
     try:
       fillers_ads = fillerlist[language]["fillers_ads"]
-
+      counter = 1
       for cell in range(1, nr_tested_media + 1):
         for i, filler in enumerate(fillers_ads):
           file_name = filler.replace("[JOB_BOOK_NUMBER]", job_book_number)
           filler_list_entries.append(
-            f'    _{cell * (i + 1)} "{file_name}"\n'
+            f'    _{counter} "{file_name}"\n'
             f'        [\n'
             f'            Cell = {cell},\n'
             f'            rotation_code = "{rotation_codes[i]}"\n'
             f'        ]'
           )
+          counter += 1
 
       output_filler_list += ',\n'.join(filler_list_entries) + '\n};\n\n'
 
